@@ -1,0 +1,32 @@
+{
+  "checked_date": "2026-10-19",
+  "repository": "https://github.com/HsynYOUSSEF/aortic-cfd-project",
+  "repository_visibility": "public",
+  "run": "aortic_exploratory_demo_20261018_01",
+  "run_files_verified": 2675,
+  "run_bytes": 2969697373,
+  "mismatches": 0,
+  "extra_files": 0,
+  "assets": [
+    {
+      "source_project_relative_path": "deliverables/Aortic_Exploratory_SideBySide_20261018_01/Aortic_Exploratory_SideBySide_1080p.mp4",
+      "bytes": 7531061,
+      "sha256": "23a3ef26979b12e436f9b92570ff5ee58aebc805a3ab0a12a42c52541316accc",
+      "uploaded": false
+    },
+    {
+      "source_project_relative_path": "geometry/REPAIRED_surface_Slicer.vtp",
+      "bytes": 2106461,
+      "sha256": "05f35ad684ab9e61392f8047453dd3837c1a727811396f095e57e270e640f53b",
+      "uploaded": false
+    },
+    {
+      "source_project_relative_path": "large_assets/aortic_exploratory_demo_20261018_01/results/aorta/wall_metrics.vtp",
+      "bytes": 2607729,
+      "sha256": "94b68f5ffaffbfe51b9cf971acef79ec936f4e761a0bcb7bd78441141bbcceb7",
+      "uploaded": false
+    }
+  ],
+  "publication_status": "HELD: user requested public repository and withholding affected assets; source dataset redistribution license unresolved.",
+  "limitations": "Hashes verify preservation, not de-identification or simulation validity. No CT, masks, geometry, video or CFD fields uploaded."
+}

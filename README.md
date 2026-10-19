@@ -4,6 +4,8 @@ Exploratory study of pulsatile blood flow in reconstructed aortic geometry, with
 
 ## Publication status
 
+Update, 19 October 2026: [verified simulation inventory and upload blockers](simulation-assets/README.md). The owner retained this public repository and requested withholding assets affected by unresolved dataset redistribution rights. Simulation files remain local; the inventory does not constitute an asset upload.
+
 This repository currently contains a project overview. The cleaned implementation, detailed reproduction documents, verification manifests and simulation assets still need to be transferred from the source workspace. Paths listed below are source-workspace paths, not downloadable files in this repository.
 
 The latest results below are transcribed from the source-workspace handoff dated 19 October 2026. The underlying files have not yet been independently checked against this repository.
