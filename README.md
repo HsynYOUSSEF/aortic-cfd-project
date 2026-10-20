@@ -2,6 +2,12 @@
 
 Exploratory blood-flow simulation in a repaired aortic geometry derived from AortaSeg-60 case Anev_01.
 
+## Step-by-step project manual
+
+Read **[PROJECT_GUIDE.md](PROJECT_GUIDE.md)** for the complete workflow: source data and attribution, CT alignment, recorded mask repair, software setup, geometry and mesh preparation, solver settings, WSS and cycle validation, 3D Slicer, ParaView, video export, troubleshooting and remaining research work.
+
+The guide marks which steps work with the public files and which require the separate full case. It also identifies missing historical inputs and scripts rather than presenting them as reproducible commands.
+
 ## Downloads
 
 - [Complete prepared project — 212 files, ZIP](aortic-cfd-publication-ready.zip): scripts, configuration, repaired segmentation, geometry, validation reports, video and references. Extract the ZIP to preserve the documented directory structure.
@@ -43,3 +49,4 @@ The uploaded archive is unchanged from the supplied publication package. Its `UP
 Dataset: El Rahal, D., Rotzinger, D. C., and Fahrni, G. (2026), **AortaSeg-60 v1.1**, Lausanne University Hospital and University of Lausanne. [Zenodo record](https://zenodo.org/records/18147026), DOI: 10.5281/zenodo.18147026. The publisher's [dataset README](https://zenodo.org/records/18147026/files/README.md?download=1) states **CC BY 4.0**. Modifications include inferred orientation, research mask repair, generated surfaces and synthetic-boundary-condition CFD visualization. Source authors do not endorse these modifications. Automated source masks are not reference-standard anatomy.
 
 See `REFERENCES.md` and `ATTRIBUTION.md` for software citations, including OpenFOAM, Gmsh (used for candidate meshes, not the final staircase mesh), VTK, ParaView and FFmpeg. Dataset licensing does not automatically license all project code.
+
