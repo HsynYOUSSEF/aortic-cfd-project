@@ -1,4 +1,4 @@
-# Complete project guide: data, CFD, 3D Slicer, ParaView and video
+# Latest-run guide: data, CFD, 3D Slicer, ParaView and video
 
 This guide describes the recorded project and practical ways to use its outputs. Commands labelled **conditional** require the separately preserved full case. Commands labelled **new reconstruction** create a new experiment; they do not certify reproduction of the published result. This documentation update does not rerun the solver.
 
@@ -21,8 +21,8 @@ This guide describes the recorded project and practical ways to use its outputs.
 
 1. Open this repository and download `aortic-cfd-publication-ready.zip` using **Download raw file**. Downloading the entire repository gives an outer ZIP that still contains this project ZIP; extract both levels.
 2. Extract the project ZIP into a new folder, for example `C:\dev\aortic_project_public`. Keep the original ZIP unchanged.
-3. The extracted folder should contain `src`, `runs`, `reports`, `data`, `geometry`, `deliverables`, `REPRODUCING.md` and `PUBLICATION_MANIFEST.json`.
-4. Read this guide from the repository. The ZIP is a frozen historical package: its upload status predates successful publication and its older launcher is not the latest run procedure.
+3. The extracted folder contains `tools`, `runs`, `reports`, `data`, `geometry`, `video`, `REPRODUCING.md` and `PUBLICATION_MANIFEST.json`.
+4. Read this guide and COMPLETION_STATUS.md before trying to reproduce the solver.
 5. Put experiments in separate folders. Never solve inside the preserved reference run or overwrite the supplied geometry.
 
 Use PowerShell for Windows/WSL administration:
@@ -63,7 +63,7 @@ print('PASS:', len(manifest['files']), 'manifest entries match')
 PY
 ```
 
-There are 211 manifest records for the 212-file archive; the manifest does not hash itself. Run this in the untouched extraction, before editing scripts. Hashes detect changes; they do not establish scientific correctness.
+The manifest records every package file except itself. Run this in the untouched extraction, before editing scripts. Hashes detect changes; they do not establish scientific correctness.
 
 ## 3. Software and environment
 
@@ -77,11 +77,12 @@ sudo apt install python3 python3-venv python3-pip ffmpeg unzip fonts-dejavu-core
 python3 -m venv "$HOME/aortic-docs-env"
 source "$HOME/aortic-docs-env/bin/activate"
 python -m pip install --upgrade pip
-python -m pip install -r "$PROJECT/requirements.txt"
+python -m pip install numpy scipy vtk Pillow
+# Record these newly installed versions; they are not a historical lockfile.
 python -m pip freeze > "$PROJECT/environment-new.txt"
 ```
 
-These are setup instructions, not a frozen historical environment. The public requirements request NumPy 2.x; several archived analysis scripts call `np.trapezoid`. The completed run also records a NumPy 1.26 compatibility repair using `np.trapz`. Use the analysis module accompanying the full case and record its NumPy version. Do not mix historical modules blindly.
+These are setup instructions, not a frozen historical environment. The completed run records a NumPy 1.26 compatibility repair using `np.trapz`; other analysis modules may require NumPy 2.x for `np.trapezoid`. Use the analysis module accompanying the full case and record its NumPy version. Do not mix historical modules blindly.
 
 For OpenFOAM, first inspect the existing installation:
 
@@ -115,7 +116,7 @@ The vessel comes from **AortaSeg-60 v1.1**, case **Anev_01**, by Dania El Rahal,
 
 Download the dataset archive, inspect its members and extract only the required case into a new `source-data` folder. Keep the downloaded files immutable. The recorded source CT SHA-256 is `a678305ded7a2d60faf28211d73b9fc34f836e0cedf322e9ef966d5fda1cf4c7`; mask SHA-256 is `22710cf5e959497cac698a8015b2c04075773ea67c8293d3b291eacc5a920a07`. Compare with `sha256sum <filename>` before calling a download the same source. A mismatch requires investigation, not changing the expected checksum.
 
-The publisher's README states **CC BY 4.0**. Preserve attribution and describe modifications. Older local provenance mentions a conflicting CC0 API value; that is historical evidence, not permission to remove attribution. See [ATTRIBUTION.md](ATTRIBUTION.md) and [REFERENCES.md](REFERENCES.md).
+The publisher's README states **CC BY 4.0**. Preserve attribution and describe modifications. See [ATTRIBUTION.md](ATTRIBUTION.md) and [REFERENCES.md](REFERENCES.md).
 
 **Flow was assumed, not measured from this patient:**
 
@@ -172,15 +173,11 @@ Slicer is used here for anatomy and segmentation inspection. Loading a surface d
 
 ## 7. From surface to CFD domain
 
-The retained preparation code is `src/prepare_case.py`. It clips the repaired RAS-mm surface at **z = −420 and −240 mm**, caps the cuts and converts coordinates to metres. It requires one upper inlet and two lower connected outlet groups. Lower groups are ordered by their x-centroid and named `outlet1` and `outlet2`; no anatomical branch identity is implied.
+The recorded preparation clips the repaired RAS-mm surface at **z = −420 and −240 mm**, caps the cuts and converts coordinates to metres. It requires one upper inlet and two lower connected outlet groups. Lower groups are ordered by their x-centroid and named `outlet1` and `outlet2`; no anatomical branch identity is implied.
 
 The OpenFOAM patch names are `aorta_wall`, `aorta_inlet`, `aorta_outlet1`, `aorta_outlet2`. Other closed reconstructed branches are treated as walls. `geometry/CFD_surface_SI.vtp` is a geometry artifact, not a solved volumetric mesh.
 
-Do not run `src/prepare_case.py` blindly as a complete current pipeline. It calls `_dictionary_template.py`, which expects the excluded historical `results/pilot/surface_smooth10_RAS_mm.vtp`. The later coarse preparation script also expects an excluded archived case and boundary VTP. Resolving these inputs and auditing the generated dictionaries is necessary before a new mesh build.
-
-The selected mesh was a nominal 1 mm uniform staircase mesh with **snapping off and no prism layers**. The recorded script `runs/runtime_optimization_20261018_01/src/prepare_coarse_uniform.py` used `blockMesh`, `snappyHexMesh -overwrite` and full native mesh checks. It depends on local historical paths; it is not a standalone ZIP-only builder.
-
-For a **new mesh build with complete prepared dictionaries**, run in a new case only:
+The exact mesh-building inputs and dictionaries must be recovered from the full run. The compact package is not a standalone mesh builder. For a **new mesh build with complete prepared dictionaries**, run in a new case only:
 
 ```bash
 set -o pipefail
@@ -247,7 +244,7 @@ Inspect `constant/transportProperties`, `constant/turbulenceProperties`, `0/U`, 
 | `purgeWrite` | 0 |
 | PIMPLE | 1 outer, 2 pressure, 2 non-orthogonal correctors |
 
-In the copied run configuration set `case_name` to `aorta` and `end_time_s` to 3. Do not use the ZIP root `run_config.json`: it describes the older 30-second `repaired_run_01` preparation.
+In the copied run configuration set `case_name` to `aorta` and `end_time_s` to 3. Use the full case configuration, not a newly invented configuration.
 
 1. Check the copied mesh with the native command above; inspect the log for `Mesh OK.` and all required patches.
 2. Confirm no other solver/controller is writing this case. Start only one.
@@ -273,7 +270,7 @@ The historical run used a SHA1 compatibility library for some post-processing co
 
 ## 10. Validation and cycle metrics
 
-Use the modules accompanying the complete run. Inspect CLI options before copying commands: the public historical `validate_saved_fields.py` accepts fewer flags than the completed-run version.
+Use the modules accompanying the complete run and verify supported command-line options.
 
 **Conditional completed-run commands** (only if its `--help` confirms these options):
 
@@ -286,9 +283,7 @@ python3 src/analyze_results.py
 python3 src/check_periodicity.py .
 ```
 
-The older validator in `runs/runtime_repair_20261017_01/src` supports `--require-end` and `--minimum-times` but not `--minimum-time` or `--report-name`. Its report labels initial-transient checks. Do not silently substitute it for the final validator. Both depend on a matching `src/analyze_results.py` under the chosen run root.
-
-The checks establish:
+The final validator and matching analysis module are required from the full run. The checks establish:
 
 - Required end time and sufficient saved fields; finite U, p and wall stress.
 - Relative flow imbalance `abs(Qin − Qout1 − Qout2)/abs(Qin) < 0.005`.
@@ -305,7 +300,7 @@ RRT   = 1 / ((1 - 2*OSI)*TAWSS)                        [Pa^-1]
 
 Use actual timestamps and trapezoidal integration, not an unweighted average of irregularly spaced samples. Treat zero denominators explicitly. RRT is this derived index, not a directly measured residence time in seconds. Area-weight aggregate wall metrics and volume/time-weight phase comparisons. Do not average stress vectors before taking magnitudes for TAWSS.
 
-Recorded final results: flow imbalance 2.37e-10; inlet error 3.28e-8; U cycle difference 4.28%; p 3.65%; **phase-resolved WSS 8.86% (FAIL)**. Passing TAWSS change does not override that failure. Coarse/fine startup differences were 26.4% U, 7.9% p and 68.5% mapped WSS, so mesh accuracy is not established. The latest evidence is `runs/runtime_optimization_20261018_01/reports/FINAL_STATUS.json` in the ZIP.
+Recorded final results: flow imbalance 2.37e-10; inlet error 3.28e-8; U cycle difference 4.28%; p 3.65%; **phase-resolved WSS 8.86% (FAIL)**. Passing TAWSS change does not override that failure. Mesh accuracy is not established. The latest evidence is `runs/runtime_optimization_20261018_01/reports/FINAL_STATUS.json` in the ZIP.
 
 ## 11. ParaView: open the geometry or actual CFD
 
@@ -421,7 +416,7 @@ For each new run, record software versions, input checksums, geometry changes, m
 
 ## 15. Sources and how to read the historical archive
 
-Project-specific evidence is in the extracted ZIP: `reports/repair_audit.json`, `reports/repair_README.md`, `reports/alignment_provenance.json`, `runs/runtime_optimization_20261018_01/reports/COARSE_MESH_UNIFORM.json`, `FINAL_STATUS.json` in the same reports folder, the renderer source and its delivered `render_report.json`. A report saying “no solve performed” describes its earlier stage; it does not supersede the later final status.
+Project-specific evidence is in the extracted ZIP: `reports/repair_audit.json`, `reports/alignment_provenance.json`, `runs/runtime_optimization_20261018_01/reports/COARSE_MESH_UNIFORM.json`, `FINAL_STATUS.json` in the same reports folder, the renderer source and its delivered `render_report.json`. A report saying “no solve performed” describes its earlier stage; it does not supersede the later final status.
 
 Official software references for the instructions:
 

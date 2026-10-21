@@ -1,52 +1,30 @@
-# Aortic CFD project
+# Aortic CFD — latest 3-second exploratory run
 
-Exploratory blood-flow simulation in a repaired aortic geometry derived from AortaSeg-60 case Anev_01.
+Blood-flow visualization in a repaired AortaSeg-60 Anev_01 vessel, with synthetic pulsatile inflow and two zero-pressure outlets.
 
-## Step-by-step project manual
+## Start here
 
-Read **[PROJECT_GUIDE.md](PROJECT_GUIDE.md)** for the complete workflow: source data and attribution, CT alignment, recorded mask repair, software setup, geometry and mesh preparation, solver settings, WSS and cycle validation, 3D Slicer, ParaView, video export, troubleshooting and remaining research work.
+- [Step-by-step guide](PROJECT_GUIDE.md): data, reconstruction, CFD, Slicer, ParaView and video.
+- [Latest compact package](aortic-cfd-publication-ready.zip): latest presentation assets, geometry, selected evidence and helper scripts. Extract before use.
+- [What is included and what is still missing](COMPLETION_STATUS.md).
+- [1080p simulation video](Aortic_Exploratory_SideBySide_1080p.mp4).
+- [Slicer segmentation](REPAIRED_AND_CHANGES.seg.nrrd), [Slicer surface](REPAIRED_surface_Slicer.vtp), [STL](REPAIRED_surface_RAS_mm.stl).
+- [Latest validation summary](LATEST_VALIDATION.json), [checksums](PUBLICATION_MANIFEST.json), [references](REFERENCES.md), [attribution](ATTRIBUTION.md).
 
-The guide marks which steps work with the public files and which require the separate full case. It also identifies missing historical inputs and scripts rather than presenting them as reproducible commands.
+## Latest result
 
-## Downloads
+The solver reached 3.0 s on 128,472 cells. Saved-field checks covered 200 states from 1.01 to 3.0 s. Maximum relative flow imbalance was 2.37e-10; inlet waveform error was 3.28e-8. Phase-resolved WSS change was **8.86%, exceeding the 5% periodicity threshold**. The result remains **exploratory and transient**; anatomical and mesh accuracy are not established.
 
-- [Complete prepared project — 212 files, ZIP](aortic-cfd-publication-ready.zip): scripts, configuration, repaired segmentation, geometry, validation reports, video and references. Extract the ZIP to preserve the documented directory structure.
-- [Simulation video — 1080p MP4](Aortic_Exploratory_SideBySide_1080p.mp4)
-- [3D Slicer segmentation — repaired vessel and changes](REPAIRED_AND_CHANGES.seg.nrrd)
-- [3D surface — STL, RAS millimetres](REPAIRED_surface_RAS_mm.stl)
-- [3D Slicer surface — VTP](REPAIRED_surface_Slicer.vtp)
-- [Reproduction instructions](REPRODUCING.md)
-- [Data and software references](REFERENCES.md)
-- [Dataset attribution and modifications](ATTRIBUTION.md)
-- [Original package checksum manifest](PUBLICATION_MANIFEST.json)
+The movie shows 300 saved states at 1920×1080, approximately 29.91 seconds, with 10× slowed playback and no cycle replay. The right panel shows unvalidated coarse-mesh WSS.
 
-## Open the vessel in 3D Slicer
+## Assumptions
 
-Download the `.seg.nrrd` file using GitHub's raw/download control. In 3D Slicer choose **Add Data**, select it, and load it as a segmentation. Use **Show 3D** in the Segmentations module. For a surface-only view, load the STL or VTP as a model. The original CT is not included in this public package; obtain it from the cited dataset if CT overlay is needed.
+Rigid walls; laminar Newtonian flow; density 1060 kg/m³; dynamic viscosity 0.0035 Pa·s; synthetic Q(t)=5e-5+3.5e-5 sin(2πt) m³/s. Both outlets use zero kinematic gauge pressure. These are research assumptions, not patient measurements. CT orientation is inferred, and mask repair modifies anatomy. The exact mask-repair generating program was not retained.
 
-## Latest result and interpretation
+## Reproduction and preservation
 
-The solver reached **3.0 simulated seconds** on a **128,472-cell coarse staircase mesh**. Saved-field checks covered 200 states from 1.01 to 3.00 s. Maximum relative flow imbalance was 2.37e-10 and inlet-waveform error 3.28e-8.
-
-**The result remains transient and exploratory.** Phase-resolved wall shear stress changed **8.86%**, exceeding the unchanged **5% periodicity threshold**. Velocity and pressure changes were 4.28% and 3.65%. Solver completion and conservation do not establish mesh convergence, anatomical accuracy or clinical validity. Coarse-mesh WSS is unvalidated.
-
-The 300-frame, 1920 × 1080 video shows saved states once, at 10× slowed playback. It does not replay cycles to imply a longer simulation. The right panel shows unvalidated coarse-mesh WSS.
-
-## Model assumptions
-
-The model uses rigid walls, laminar Newtonian flow, density 1060 kg/m³, dynamic viscosity 0.0035 Pa·s, synthetic 1-second sinusoidal inflow and two independent zero-gauge-pressure outlets. Outlet split is solved, not patient measured. CT orientation was inferred without DICOM orientation metadata. Research repair added 17.26% and removed 3.25% of mask voxels; anatomical correctness is not established.
-
-The authoritative latest report is `runs/runtime_optimization_20261018_01/reports/FINAL_STATUS.json` inside the archive. Earlier runs are retained as development and validation evidence, not as the latest result.
-
-## Reproduction and package scope
-
-Extract the archive before following `REPRODUCING.md`; the loose copies here are convenient downloads. It contains the prepared source, configurations, repaired geometry, compact reports and presentation assets. Original CT, full CFD fields/restart directories, environments, caches and backups are **not included**. Full fields were preserved separately in the owner's project storage at `large_assets/aortic_exploratory_demo_20261018_01`; this repository does not host them. The exact original mask-repair generating script was not retained, so that preprocessing step is not fully reproducible from code.
-
-The uploaded archive is unchanged from the supplied publication package. Its `UPLOAD_STATUS.md` records the earlier connector permission failure and is historical; the archive's internal paths and checksums refer to its extracted contents. The standalone README on this page documents the web publication layout.
+The full mesh, solver fields/checkpoints, exact run controller/analysis modules and original/corrected CT are **not in this compact package**. Their separate transfer is still required. Scene-generation scripts are included, but a finished `.mrb` or `.pvsm` has not been generated and tested here. This repository is not yet a complete backup; retain the laptop project.
 
 ## Attribution
 
-Dataset: El Rahal, D., Rotzinger, D. C., and Fahrni, G. (2026), **AortaSeg-60 v1.1**, Lausanne University Hospital and University of Lausanne. [Zenodo record](https://zenodo.org/records/18147026), DOI: 10.5281/zenodo.18147026. The publisher's [dataset README](https://zenodo.org/records/18147026/files/README.md?download=1) states **CC BY 4.0**. Modifications include inferred orientation, research mask repair, generated surfaces and synthetic-boundary-condition CFD visualization. Source authors do not endorse these modifications. Automated source masks are not reference-standard anatomy.
-
-See `REFERENCES.md` and `ATTRIBUTION.md` for software citations, including OpenFOAM, Gmsh (used for candidate meshes, not the final staircase mesh), VTK, ParaView and FFmpeg. Dataset licensing does not automatically license all project code.
-
+El Rahal, D., Rotzinger, D. C., and Fahrni, G. (2026), AortaSeg-60 v1.1, Lausanne University Hospital and University of Lausanne. DOI: [10.5281/zenodo.18147026](https://doi.org/10.5281/zenodo.18147026). The publisher's README states CC BY 4.0. Modifications include inferred orientation correction, research mask repair, derived surfaces and synthetic-boundary-condition CFD visualization. Source authors do not endorse the modifications; automated masks are not reference-standard anatomy. See REFERENCES.md and ATTRIBUTION.md.

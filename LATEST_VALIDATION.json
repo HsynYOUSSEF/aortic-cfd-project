@@ -1,0 +1,34 @@
+{
+  "status": "THREE_SECOND_EXPLORATORY_SIMULATION_COMPLETE_TRANSIENT",
+  "saved_field_validation": {
+    "status": "SAVED_FIELD_CHECKS_PASS",
+    "validated_field_count": 200,
+    "time_range_s": [
+      1.01,
+      3.0
+    ],
+    "max_relative_flow_imbalance": 2.3734612557096206e-10,
+    "max_relative_inlet_error": 3.2848069816014365e-08
+  },
+  "periodicity": {
+    "status": "FAIL",
+    "current_cycle_s": [
+      2.0,
+      3.0
+    ],
+    "prior_cycle_s": [
+      1.0,
+      2.0
+    ],
+    "paired_phases": 21,
+    "threshold_relative_L2": 0.05,
+    "velocity_volume_time_relative_L2": 0.042830942195797236,
+    "pressure_volume_time_relative_L2": 0.03645718897419799,
+    "WSS_area_time_relative_L2": 0.08862296644210213,
+    "note": "Additional phase-resolved gates; original conservation, inlet and TAWSS cycle-change gates remain required. Mesh/time-step convergence and anatomical accuracy are not established."
+  },
+  "interpretation": "Transient; periodicity not achieved because phase-resolved WSS change was 8.8623%, exceeding the unchanged 5% gate. No automatic extension beyond 3 s. Coarse-mesh WSS is unvalidated.",
+  "scope": "Selected latest-run evidence; full source report is inside the compact ZIP.",
+  "cells": 128472,
+  "simulated_time_s": 3.0
+}
