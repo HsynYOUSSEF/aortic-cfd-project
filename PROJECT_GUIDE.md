@@ -1,3 +1,5 @@
+> **Source recovery update:** Use [REBUILD_FROM_SOURCE.md](REBUILD_FROM_SOURCE.md) for the new runnable workflow and its verification status. The instructions below also describe the recorded demonstration and may refer to historical controller files that remain unavailable. The new workflow is not an exact replay.
+
 # Latest-run guide: data, CFD, 3D Slicer, ParaView and video
 
 This guide describes the recorded project and practical ways to use its outputs. Commands labelled **conditional** require the separately preserved full case. Commands labelled **new reconstruction** create a new experiment; they do not certify reproduction of the published result. This documentation update does not rerun the solver.

@@ -1,5 +1,11 @@
 # Latest-run package status
 
+## Source recovery update
+
+Recovered preparation and analysis scripts were found in the original uploaded archive. They are now included under `repro/recovered`, with byte hashes. New tools and source masks are in the expanded ZIP. See [REBUILD_FROM_SOURCE.md](REBUILD_FROM_SOURCE.md).
+
+Real-input case preparation, replacement-mask execution, two synthetic geometry tests and overwrite rejection passed. OpenFOAM meshing, solving, new analysis/video and Slicer/ParaView application tests were not run. The replacement mask is a distinct research candidate, not the original repair.
+
 ## Included and checked
 
 - Latest 1080p side-by-side video, preview and render report.
@@ -16,7 +22,7 @@
 - Exact environment records if available. No exact historical dependency lockfile has been recovered.
 - A generated and reopened `.mrb` scene and `.pvsm` visualization; the helper scripts are not those finished artifacts.
 
-These files were not found in the current hosted workspace or by the targeted upload search. This package does not replace a complete laptop backup. Do not delete the local project on the basis of this upload.
+The complete original case and CT volumes were not found in the current hosted workspace. Some preparation/analysis source has now been recovered, but not the exact final controller or complete original run setup. This package does not replace a complete laptop backup. Do not delete the local project on the basis of this upload.
 
 ## Helper commands
 

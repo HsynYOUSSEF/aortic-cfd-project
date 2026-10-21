@@ -4,6 +4,8 @@ Blood-flow visualization in a repaired AortaSeg-60 Anev_01 vessel, with syntheti
 
 ## Start here
 
+- [Rebuild from source](REBUILD_FROM_SOURCE.md): new portable driver, recovered sources, mask-repair baseline and test evidence.
+
 - [Step-by-step guide](PROJECT_GUIDE.md): data, reconstruction, CFD, Slicer, ParaView and video.
 - [Latest compact package](aortic-cfd-publication-ready.zip): latest presentation assets, geometry, selected evidence and helper scripts. Extract before use.
 - [What is included and what is still missing](COMPLETION_STATUS.md).
@@ -23,7 +25,7 @@ Rigid walls; laminar Newtonian flow; density 1060 kg/m³; dynamic viscosity 0.00
 
 ## Reproduction and preservation
 
-The full mesh, solver fields/checkpoints, exact run controller/analysis modules and original/corrected CT are **not in this compact package**. Their separate transfer is still required. Scene-generation scripts are included, but a finished `.mrb` or `.pvsm` has not been generated and tested here. This repository is not yet a complete backup; retain the laptop project.
+The package now includes recovered preparation/analysis source, source-reference and repaired masks, and a new portable regeneration driver. Case preparation and the replacement repair were executed successfully. The full saved flow fields, exact historical controller and original/corrected CT remain absent. End-to-end OpenFOAM regeneration has not been tested here; follow REBUILD_FROM_SOURCE.md and retain the laptop originals. Scene-generation scripts are included, but a finished `.mrb` or `.pvsm` has not been generated and tested here. This repository is not yet a complete backup; retain the laptop project.
 
 ## Attribution
 

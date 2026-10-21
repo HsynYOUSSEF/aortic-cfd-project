@@ -1,114 +1,199 @@
 {
-  "scope": "Latest compact package; full CFD fields and CT excluded; not a complete project backup",
+  "description": "Expanded latest package with recovered sources and new regeneration workflow; manifest excludes itself",
   "files": [
     {
       "path": "ATTRIBUTION.md",
-      "bytes": 2205,
+      "size_bytes": 2205,
       "sha256": "5d5117de799fc95b8cab55fc48f610ad011cc4ab305ae1632a399d6fc7fcfb61"
     },
     {
       "path": "COMPLETION_STATUS.md",
-      "bytes": 3266,
-      "sha256": "fa73ad8428a302406e17893cb9c3c709dc237cf2eba8b99885a05d5fb5aff385"
+      "size_bytes": 3971,
+      "sha256": "a9ad5af3056a6a42c7fa679237f2ef6035db2fec082b2b488042203781b9f285"
     },
     {
       "path": "LATEST_VALIDATION.json",
-      "bytes": 1270,
+      "size_bytes": 1270,
       "sha256": "6d78baf69f5c83441c2c2f0ea3c8ab466cbfb062d1ab0fbde47c4f5d9fbe1628"
     },
     {
       "path": "PROJECT_GUIDE.md",
-      "bytes": 34705,
-      "sha256": "3f593c17022dd6e3b20fe28aad2707e27cedd4c05a08910eca17af655fdc2506"
+      "size_bytes": 35023,
+      "sha256": "2fbb8808239ec7f47bf66dedd9c0d67582c9c901d18aa29152602dfb95a82df4"
     },
     {
       "path": "README.md",
-      "bytes": 2797,
-      "sha256": "4417880f756975f92635ffc28fb630b777be5de0d2af77ab812de9c7e411dea8"
+      "size_bytes": 3173,
+      "sha256": "e3517f45586397ae763bf113c6b540eba9f9efc6120b09ded6a1cffd12a97409"
+    },
+    {
+      "path": "REBUILD_FROM_SOURCE.md",
+      "size_bytes": 10365,
+      "sha256": "2c8656b9cb1c5971c2538e55c8e3279d23628c9703a7312e10e9dbb9b6ab63b5"
     },
     {
       "path": "REFERENCES.md",
-      "bytes": 2975,
+      "size_bytes": 2975,
       "sha256": "9613de5b27db5e1012d714497e90bb701cda204b45362e6d859a04c27d64538c"
     },
     {
       "path": "REPRODUCING.md",
-      "bytes": 457,
-      "sha256": "1a37279ceaa510c13978041760254f955cdcde3d7e75b01058158764ffda4d7c"
+      "size_bytes": 619,
+      "sha256": "6b36ceef0345b1b5c481c23f98a07b5632df069e008dbaa13eb3d23ae2b9d966"
+    },
+    {
+      "path": "data/repaired/GREEN_REPAIRED_RESEARCH.nrrd",
+      "size_bytes": 24097,
+      "sha256": "a4c9a5db5103e2d3a414bb560e7b4d3516f25f25cd7cd3e4a1c17aa063170df6"
+    },
+    {
+      "path": "data/repaired/ORIGINAL_GREEN_REFERENCE.nrrd",
+      "size_bytes": 49723,
+      "sha256": "f9fcb9885b293c0d9c11744c28fd74e05904e822a518bf4a57224a99caf5492e"
     },
     {
       "path": "data/repaired/REPAIRED_AND_CHANGES.seg.nrrd",
-      "bytes": 657354,
+      "size_bytes": 657354,
       "sha256": "d9cd47a79d73a6826119ab77f73a3274d0064c1a1c72982434e95d838bf53ddb"
     },
     {
       "path": "geometry/CFD_surface_SI.vtp",
-      "bytes": 2897774,
+      "size_bytes": 2897774,
       "sha256": "07bf33cbfa31877d6b11d42d0b9f76d0e346984effb7d7911096d97b0002f135"
     },
     {
       "path": "geometry/REPAIRED_surface_RAS_mm.stl",
-      "bytes": 6866884,
+      "size_bytes": 6866884,
       "sha256": "0644f604308537c899fe8c61391c88f885cc3f0c4ebf983a4e17ba023655d613"
     },
     {
+      "path": "geometry/REPAIRED_surface_RAS_mm.vtp",
+      "size_bytes": 2091823,
+      "sha256": "cc0a061d1d3fb7535cdd36ebbbd0505dd6a219b6da1fd16613dd0c67f5ada82c"
+    },
+    {
       "path": "geometry/REPAIRED_surface_Slicer.vtp",
-      "bytes": 2106461,
+      "size_bytes": 2106461,
       "sha256": "05f35ad684ab9e61392f8047453dd3837c1a727811396f095e57e270e640f53b"
     },
     {
       "path": "reports/alignment_provenance.json",
-      "bytes": 1734,
+      "size_bytes": 1734,
       "sha256": "9a44f0243e59c9b5634594a6705759cc8087f0ba9d70e2842db32a011f4fbb78"
     },
     {
       "path": "reports/repair_audit.json",
-      "bytes": 3453,
+      "size_bytes": 3453,
       "sha256": "391f0db6b61888eab2b93018cb8d8c2acbd4ea7a1b1d20c12943502165bf987e"
     },
     {
+      "path": "repro/recovered/_dictionary_template.py",
+      "size_bytes": 7390,
+      "sha256": "461f66b9d2149aa09ec87d4b4a5a4452d1cffb2d2c93ede5046d32087aa5c197"
+    },
+    {
+      "path": "repro/recovered/analyze_results.py",
+      "size_bytes": 6435,
+      "sha256": "aaca8962de67360483f50dd7116e1dbd78095a156f2cd6336941238ed2c8c426"
+    },
+    {
+      "path": "repro/recovered/check_mesh_gate.py",
+      "size_bytes": 1217,
+      "sha256": "ea6c8f751cf0a3484a4f33a19b1950749fda42d32ce9b597219b9c845fa010ef"
+    },
+    {
+      "path": "repro/recovered/prepare_case.py",
+      "size_bytes": 8005,
+      "sha256": "88e385c13c5a8268010f011d3a8a93a0775f823aaadee9e0e70b3188ae779c81"
+    },
+    {
+      "path": "repro/requirements.txt",
+      "size_bytes": 38,
+      "sha256": "8160f89c102ea22ff4985295a820e4b1a6ec8b5b6fd81f5a65d8b04f6d937d71"
+    },
+    {
+      "path": "repro/tools/check_periodicity.py",
+      "size_bytes": 3096,
+      "sha256": "a8b88ba8ab0ce717e7d1d6d6624f41285d86042d976ea973e0d813e37834f906"
+    },
+    {
+      "path": "repro/tools/rebuild.py",
+      "size_bytes": 6277,
+      "sha256": "f1779d60779f27e2021300362a9a4867162838ccc3cedbe17c5a11394625a457"
+    },
+    {
+      "path": "repro/tools/reconstruct_mask.py",
+      "size_bytes": 9195,
+      "sha256": "15d28c4efff6343b66c0bf7627d16e793b56d1ecdeb0d8d04ea9d3fa98a9401f"
+    },
+    {
+      "path": "repro/tools/test_reconstruction.py",
+      "size_bytes": 1449,
+      "sha256": "0137cf4c3962f4bc0bf2089ac7c3d5ef6b427638fda0d09343d4c89f191c5ae9"
+    },
+    {
+      "path": "repro/verification/TEST_STATUS.json",
+      "size_bytes": 982,
+      "sha256": "1128f3cd4325e47b7fe50942a72881d32cd4a1e74e65d0a231b943489975124d"
+    },
+    {
+      "path": "repro/verification/case_preparation.json",
+      "size_bytes": 1559,
+      "sha256": "b69d3a2a3027dbbd11972e0208f2a683967d507c52a4f94112ef95fd1a5abb96"
+    },
+    {
+      "path": "repro/verification/repair_report.json",
+      "size_bytes": 1587,
+      "sha256": "7eb468b15ef9b01f35405b6de269a459d60fec4c855eb676ea35c6cbfc7ca7a8"
+    },
+    {
+      "path": "repro/verification/source_recovery.json",
+      "size_bytes": 722,
+      "sha256": "64765a8c5b3de6015fcb9dcd4f9b11ff2b1d313e1fd9478d6243fae94c0b701d"
+    },
+    {
       "path": "runs/runtime_optimization_20261018_01/reports/COARSE_MESH_UNIFORM.json",
-      "bytes": 934,
+      "size_bytes": 934,
       "sha256": "a5f7dcb419eb398b892b38029fa82527aced8240909c7d588a00839adbbe5813"
     },
     {
       "path": "runs/runtime_optimization_20261018_01/reports/FINAL_STATUS.json",
-      "bytes": 4855,
+      "size_bytes": 4855,
       "sha256": "74e9e1d5db9dbb56993a579329c29326c333e449589bca75cc1f884d1b08b3c2"
     },
     {
       "path": "runs/runtime_optimization_20261018_01/src/render_side_by_side.py",
-      "bytes": 11035,
+      "size_bytes": 11035,
       "sha256": "b0cd2a77b1012e87cd56c81f8179ec6bd5b64fea1ea1b716ee9261db80c567e6"
     },
     {
       "path": "tools/backup_latest_run.py",
-      "bytes": 3047,
+      "size_bytes": 3047,
       "sha256": "2d9d1d345284758a58ce21c247fdb9783c760dbdd4eaf053e44e164165aead74"
     },
     {
       "path": "tools/create_paraview_state.py",
-      "bytes": 1071,
+      "size_bytes": 1071,
       "sha256": "b3b79acba564ee4e325ff6b0f2e83d7c4a7065df5d45e1717ee6490568c7426b"
     },
     {
       "path": "tools/create_slicer_scene.py",
-      "bytes": 1165,
+      "size_bytes": 1165,
       "sha256": "369ee52486b969367fadb9bd938c144020f94f9f18c5c8408ab98fd063572cb6"
     },
     {
       "path": "video/Aortic_Exploratory_SideBySide_1080p.mp4",
-      "bytes": 7531061,
+      "size_bytes": 7531061,
       "sha256": "23a3ef26979b12e436f9b92570ff5ee58aebc805a3ab0a12a42c52541316accc"
     },
     {
       "path": "video/preview_middle.jpg",
-      "bytes": 90853,
+      "size_bytes": 90853,
       "sha256": "7e7e30177e585d83993c2c1feeab6a1c8b12920f267105ae84249a216d7a9e8b"
     },
     {
       "path": "video/render_report.json",
-      "bytes": 2159,
+      "size_bytes": 2159,
       "sha256": "b8cb4c3053e9d75c0027e130707231f31834714232775b9d046eb527fa0e2b5d"
     }
   ]

@@ -1,5 +1,5 @@
-# Reproduce the latest 3-second run
+# Reproduction
 
-Follow [PROJECT_GUIDE.md](PROJECT_GUIDE.md), sections 8–12. The compact package contains presentation assets, geometry and selected evidence; the complete solver input/output case is required separately. See [COMPLETION_STATUS.md](COMPLETION_STATUS.md).
+Start with [REBUILD_FROM_SOURCE.md](REBUILD_FROM_SOURCE.md). The expanded ZIP contains recovered setup/analysis sources, source masks and a new driver for preparation, meshing, solving, WSS, analysis and video. Geometry preparation and a separate replacement repair were executed and tested. OpenFOAM solving and GUI scene creation remain untested here.
 
-The reference run ends at 3.0 s on 128,472 cells. Its phase-resolved WSS change is 8.86%, above the unchanged 5% gate. Keep it labelled exploratory and transient.
+For scientific context and viewing instructions, read [PROJECT_GUIDE.md](PROJECT_GUIDE.md). For included/missing assets, read [COMPLETION_STATUS.md](COMPLETION_STATUS.md). Exact historical replay and a complete laptop backup are not yet available.
