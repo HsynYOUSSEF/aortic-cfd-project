@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "case": "/tmp/aortic_optimization_coarse_20261018_03/cfd/aorta",
+  "patch_faces": {
+    "aorta_wall": 31344,
+    "aorta_inlet": 881,
+    "aorta_outlet1": 201,
+    "aorta_outlet2": 46
+  },
+  "source_geometry": "Exact preserved fine-mesh boundary, regrouped into original four patches",
+  "surface_sha256": "0a56555c3c73a23b553dc66336cde394838cccf42ac5d99f75ec116e0872793a",
+  "nominal_surface_cell_mm": 1,
+  "layers": 0,
+  "snapping": false,
+  "interior_refinement": "uniform1mm; remove coarse-fine hanging-face transitions",
+  "geometry_approximation": "Staircase voxel boundary; original fine surface preserved. Quantify volume/cap/nearest-wall errors and U/p/WSS sensitivity before interpreting results.",
+  "accuracy": "Exploratory candidate only. Native full mesh gate, geometry/topology, startup conservation and U/p/WSS sensitivity still required before any accuracy claim.",
+  "solver_launched": false
+}

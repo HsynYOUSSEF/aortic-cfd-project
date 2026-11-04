@@ -1,0 +1,81 @@
+{
+  "status": "Research geometric repair; anatomical boundary remains unvalidated",
+  "source_reference": "green_lumen_trial_01/repair_arrays.npz original; includes three actual source slices at each end",
+  "method": [
+    "Axial 1.6 mm closing and enclosed 2D hole filling; retain all cross-section components",
+    "Signed-distance Gaussian regularization sigma 0.8 mm; retain largest 3D region; restore sizeable source components with less than half retained",
+    "3D closing radius 1.6 mm, fill enclosed 3D and axial cavities",
+    "Reconstruct both persistent terminal source components separately from extended slice 279 with 0.8 mm local closing; preserve their separation",
+    "Final signed-distance regularization sigma 0.65 mm, enclosed 2D/3D cavity fill, largest 3D component",
+    "Surface only: 10 windowed-sinc iterations, pass band 0.1"
+  ],
+  "source_voxels": 312590,
+  "repaired_voxels": 356382,
+  "source_volume_ml": 112.19598960130155,
+  "repaired_volume_ml": 127.91398050510588,
+  "added_voxels": 53953,
+  "added_percent": 17.259989123132538,
+  "removed_voxels": 10161,
+  "removed_percent": 3.2505838318564253,
+  "net_volume_percent": 14.009405291276122,
+  "symmetric_changed_percent": 20.510572954988962,
+  "boundary_distance_mm": {
+    "source_to_repaired_p95": 5.491746893122453,
+    "repaired_to_source_p95": 0.7734379768371583,
+    "maximum": 10.452257701194426
+  },
+  "surface_smoothing_vertex_motion_mm": {
+    "p95": 0.11124397069215775,
+    "maximum": 0.16024364531040192
+  },
+  "unsmoothed_topology": {
+    "points": 68670,
+    "edges": 206004,
+    "triangles": 137336,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "surface_regions": 1,
+    "euler_characteristic": 2,
+    "genus_if_closed_single_manifold": 0.0
+  },
+  "smoothed_topology": {
+    "points": 68670,
+    "edges": 206004,
+    "triangles": 137336,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "surface_regions": 1,
+    "euler_characteristic": 2,
+    "genus_if_closed_single_manifold": 0.0
+  },
+  "voxel_components": 1,
+  "both_ends_present": true,
+  "self_intersections": "Not tested",
+  "new_CFD_mesh_or_solve": false,
+  "limitations": [
+    "Derived computational lumen; branch identities and true tissue boundaries remain unvalidated",
+    "Morphological repair changes the boundary and can suppress small features",
+    "Two meaningful terminal channels are retained; reconstructed separation begins one slice below the original persistent separation",
+    "Surface cap locations are voxel crop ends, not final CFD inlet/outlet cuts",
+    "Original CT orientation inferred from file/image consistency, not independently verified with DICOM"
+  ],
+  "terminal_channel_check": {
+    "sigma_mm": 0.65,
+    "topology": {
+      "points": 68670,
+      "edges": 206004,
+      "triangles": 137336,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "surface_regions": 1,
+      "euler_characteristic": 2,
+      "genus_if_closed_single_manifold": 0.0
+    },
+    "all_26_terminal_slices_have_two_major_components": true,
+    "minimum_retention_of_major_terminal_components": 0.8469055374592834,
+    "added": 53953,
+    "removed": 10161,
+    "net_volume_percent": 14.009405291276122
+  },
+  "earlier_7percent_candidate": "Rejected after visual review: removed a lower channel. Final files replace that rejected export; trial arrays retained for audit."
+}

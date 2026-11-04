@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+/runs/*/
+!/runs/runtime_optimization_20261018_01/
+.venv/

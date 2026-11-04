@@ -1,0 +1,16 @@
+{
+  "recovered_from": "Original uploaded aortic-cfd-publication-ready.zip, extracted publication/src",
+  "sources": {
+    "prepare_case.py": "88e385c13c5a8268010f011d3a8a93a0775f823aaadee9e0e70b3188ae779c81",
+    "check_mesh_gate.py": "ea6c8f751cf0a3484a4f33a19b1950749fda42d32ce9b597219b9c845fa010ef",
+    "analyze_results.py": "aaca8962de67360483f50dd7116e1dbd78095a156f2cd6336941238ed2c8c426",
+    "_dictionary_template.py": "461f66b9d2149aa09ec87d4b4a5a4452d1cffb2d2c93ede5046d32087aa5c197"
+  },
+  "new_files": [
+    "repro/tools/rebuild.py",
+    "repro/tools/reconstruct_mask.py",
+    "repro/tools/test_reconstruction.py",
+    "repro/tools/check_periodicity.py"
+  ],
+  "exact_historical_controller_recovered": false
+}

@@ -1,20 +1,31 @@
-# Public dataset attribution
+# Data attribution and software credits
 
-AortaSeg-60, version 1.1, record 18147026.
-Creators: Dania El Rahal, David C. Rotzinger and Guillaume Fahrni, Lausanne University Hospital and University of Lausanne.
-Source: https://zenodo.org/records/18147026
-DOI: https://doi.org/10.5281/zenodo.18147026
-Accessed 13 October 2026 (Europe/Paris).
+## Dataset
 
-The repository API identifies the record license as CC0. The accompanying README states CC BY 4.0. Attribution is supplied to satisfy the more restrictive stated attribution requirement; clarify the inconsistent metadata with the creators before public redistribution or publication.
+El Rahal D, Rotzinger DC, Fahrni G. *AortaSeg-60*, version 1.1. Lausanne University Hospital and University of Lausanne, 2026. Zenodo record 18147026, DOI [10.5281/zenodo.18147026](https://doi.org/10.5281/zenodo.18147026). Paper: [AortaSeg-60 preprint](https://www.preprints.org/manuscript/202605.1002).
 
-`pilot_ct.nii.gz` is the original Anev_01 CT. `pilot_mask.nii.gz` is the original supplied AI mask. They are unchanged downloads, verified by member CRC and recorded SHA256 hashes. The masks for Anev_03/Anev_05 were used only for duplicate checking; their hashes are recorded. The derived surfaces and figures were generated for this project and are clearly labelled as unreviewed.
+This project uses case **Anev_01** (CT and its automatic TotalSegmentator mask). The CT itself is not redistributed here; the repository contains derived masks, surfaces, simulation results and a video.
 
-No authorship of the source images or supplied segmentation masks is claimed. Their clinical labels are inherited from the dataset; this project has not independently confirmed diagnosis or anatomical region.
+Licence: the record metadata and the preprint state CC0, while the dataset README states CC BY 4.0. We follow the stricter one: the creators are credited here and every modification is listed below. The creators do not endorse this project.
 
+Modifications made in this project:
 
-## Public distribution update — 21 October 2026
+- inferred CT orientation correction (slice order reversed in the metadata; voxels unchanged)
+- automatic research repair of the mask (closing, hole filling, smoothing; 20.5% of voxels changed)
+- surfaces derived from the masks, cut and extended for CFD
+- CFD simulations with assumed boundary conditions, and their visualisation
 
-The dataset publisher's live README explicitly states CC BY 4.0: https://zenodo.org/records/18147026/files/README.md?download=1 . This publication follows that stated attribution license: https://creativecommons.org/licenses/by/4.0/ . The older CC0 metadata discrepancy is retained as historical provenance, rather than a replacement for the publisher's stated terms. Credit: Dania El Rahal, David C. Rotzinger, Guillaume Fahrni; Lausanne University Hospital and University of Lausanne; AortaSeg-60 v1.1, case Anev_01; DOI https://doi.org/10.5281/zenodo.18147026 .
+The source masks are automatic and not expert-reviewed; nothing here is clinical anatomy or a clinical result.
 
-Project modifications comprise inferred orientation correction, research mask repair, derived surfaces, synthetic-boundary-condition CFD and visualization. The source authors do not endorse this project. Source segmentation is automated and not reference-standard anatomy. Third-party dataset attribution and license remain applicable; no blanket project-code license is assigned.
+## Software
+
+- OpenFOAM v1912 (OpenCFD Ltd), build 1912 patch 200626, Ubuntu package: meshing (blockMesh, snappyHexMesh) and solving (pimpleFoam). [Documentation](https://www.openfoam.com/documentation/)
+- VTK (Kitware): reading, processing and rendering surfaces and fields. [vtk.org](https://vtk.org/documentation/)
+- ParaView (Kitware): inspection of results. [User guide](https://docs.paraview.org/en/v5.12.0/UsersGuide/)
+- 3D Slicer: segmentation inspection and editing. [slicer.org](https://slicer.readthedocs.io/en/latest/)
+- TotalSegmentator (Wasserthal et al., 2023): automatic segmentation. [GitHub](https://github.com/wasserth/TotalSegmentator)
+- NumPy, SciPy, NiBabel; FFmpeg for video encoding.
+
+## Literature
+
+The literature review, with all references, is in [docs/state_of_the_art_and_methodology.md](docs/state_of_the_art_and_methodology.md).

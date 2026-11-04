@@ -1,14 +1,16 @@
+> **Archive of pilot run 2.** How to rebuild the second pilot run from the recovered scripts. For new work use [cfd_v2](../cfd_v2/README.md). Commands are run from the repository root.
+
 # Rebuild files from the supplied inputs
 
 ## What this workflow does
 
-The expanded ZIP includes recovered case-preparation and analysis source, the source-reference and repaired masks, a repaired RAS surface, and a new portable driver. You can prepare a fresh OpenFOAM case without the laptop's saved flow fields. Those fields must then be calculated by running OpenFOAM locally.
+This repository includes recovered case-preparation and analysis source, the source-reference and repaired masks, a repaired RAS surface, and a new portable driver. You can prepare a fresh OpenFOAM case without the original saved flow fields. Those fields must then be calculated by running OpenFOAM locally.
 
 This is a **new reconstruction of the workflow**, not an exact replay of the published 3-second run. The historical controller, complete solver dictionaries/checkpoints and exact repair generator have not been recovered. The documented driver uses the supplied repaired geometry; it does not silently replace it with a newly repaired mask. A matching cell count or matching WSS is not guaranteed.
 
 ## 1. Download and install dependencies
 
-Download `aortic-cfd-publication-ready.zip` from this repository and extract it into a new folder. Run the following commands from the extracted package root in Ubuntu/WSL. Use a native Linux run directory rather than a Windows-mounted directory for the solver.
+Clone this repository and run the following commands from its root in Ubuntu/WSL. Use a native Linux run directory rather than a Windows-mounted directory for the solver.
 
 ```bash
 python3 -m venv .venv
@@ -64,7 +66,7 @@ The recovered analyzer exports wall fields, TAWSS, OSI, RRT and conservation sum
 
 The new `check_periodicity.py` separately compares 100 matching phases from 1.01–2.0 s and 2.01–3.0 s, using volume-weighted U/p and area-weighted WSS relative L2 changes. It writes `phase_periodicity.json`. All three must be below the unchanged 5% threshold for its PASS status. A computed report is not necessarily a passing report. Review conservation, inlet error, finite fields and periodicity before interpretation. Neither numerical periodicity nor `Mesh OK.` demonstrates anatomical or mesh accuracy.
 
-These analysis stages have not been executed on a new solved case in the hosted environment. They may require compatibility fixes for a different OpenFOAM build. Preserve their errors rather than modifying thresholds to obtain a pass.
+These analysis stages have not been executed on a new solved case yet. They may require compatibility fixes for a different OpenFOAM build. Preserve their errors rather than modifying thresholds to obtain a pass.
 
 ## 5. Recreate the video
 
@@ -117,6 +119,6 @@ The executed baseline has one 3D component, no detected boundary/nonmanifold sur
 - `repro/verification/repair_report.json`: executed replacement-repair evidence.
 - `repro/verification/TEST_STATUS.json`: what was tested and what was not.
 
-The two synthetic geometry tests and real-input preprocessing passed. OpenFOAM meshing/solving, analysis on new solved fields, new video generation and GUI scene creation remain untested here. Complete local end-to-end verification before calling this workflow fully reproducible. Retain the original laptop project until an independent backup has been verified.
+The two synthetic geometry tests and real-input preprocessing passed. OpenFOAM meshing/solving, analysis on new solved fields, new video generation and GUI scene creation remain untested here. Complete local end-to-end verification before calling this workflow fully reproducible. Keep the original full run (about 3 GB, not in this repository) until an independent backup has been verified.
 
-References: [SciPy binary morphology](https://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.binary_closing.html), [SciPy physical distance transforms](https://docs.scipy.org/doc/scipy-1.17.0/reference/generated/scipy.ndimage.distance_transform_edt.html), [OpenCFD WSS function](https://doc.openfoam.com/2312/tools/post-processing/function-objects/field/wallShearStress/), plus `REFERENCES.md` and the unchanged dataset attribution.
+References: [SciPy binary morphology](https://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.binary_closing.html), [SciPy physical distance transforms](https://docs.scipy.org/doc/scipy-1.17.0/reference/generated/scipy.ndimage.distance_transform_edt.html), [OpenCFD WSS function](https://doc.openfoam.com/2312/tools/post-processing/function-objects/field/wallShearStress/), plus [ATTRIBUTION.md](../ATTRIBUTION.md).
