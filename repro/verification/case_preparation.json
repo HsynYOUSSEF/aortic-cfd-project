@@ -1,0 +1,64 @@
+{
+  "status": "PREPARED_NOT_MESHED_OR_SOLVED",
+  "units": "metres",
+  "cuts_RAS_mm": [
+    -420,
+    -240
+  ],
+  "patches": {
+    "wall": {
+      "triangles": 131580,
+      "area_m2": 0.02267520132187951,
+      "centroid_RAS_m": [
+        -0.007965512151145427,
+        0.03292127747403692,
+        -0.3263167492513268
+      ]
+    },
+    "inlet": {
+      "triangles": 397,
+      "area_m2": 0.0008809406163775123,
+      "centroid_RAS_m": [
+        -0.03809131592995771,
+        0.013238552124426766,
+        -0.24
+      ]
+    },
+    "outlet1": {
+      "triangles": 226,
+      "area_m2": 0.0002255473362692473,
+      "centroid_RAS_m": [
+        -3.880542595060263e-05,
+        0.03608111508824294,
+        -0.42
+      ]
+    },
+    "outlet2": {
+      "triangles": 105,
+      "area_m2": 5.764092552347574e-05,
+      "centroid_RAS_m": [
+        0.012860106281723422,
+        0.040111936562410175,
+        -0.42000000000000004
+      ]
+    }
+  },
+  "topology": {
+    "points": 66156,
+    "triangles": 132308,
+    "edges": 198462,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "surface_regions": 1,
+    "Euler": 2
+  },
+  "locationInMesh_RAS_m": [
+    -0.007870213985443094,
+    0.024631470203399664,
+    -0.28943798625469225
+  ],
+  "seed_distance_from_voxel_boundary_mm": 15.515408565391787,
+  "inlet_waveform": "5e-5 + 3.5e-5*sin(2*pi*t)",
+  "outlet_assumption": "Two independent zero kinematic gauge pressure outlets",
+  "side_boundaries": "Other closed reconstructed surface is treated as rigid wall; no additional side-branch outlet flow is modeled."
+}

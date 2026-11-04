@@ -1,0 +1,113 @@
+{
+  "status": "THREE_SECOND_EXPLORATORY_SIMULATION_COMPLETE_TRANSIENT",
+  "solver_active": false,
+  "controller_active": false,
+  "cause_of_mid_iteration_apparent_stop": "The solver had not stopped at 0.29 s; the managed process was invisible to the shell PID table. Its log continued. It later reached 3.0 s and exited 0.",
+  "solver": {
+    "status": "SOLVER_TARGET_REACHED",
+    "stage": "cycle_3",
+    "target_s": 3.0,
+    "simulated_time_s": 3.0,
+    "elapsed_seconds": 2331.9782946490013,
+    "returncode": 0,
+    "reason": null,
+    "command": [
+      "pimpleFoam",
+      "-case",
+      "/tmp/aortic_exploratory_demo_20261018_01/cfd/aorta",
+      "-noFunctionObjects"
+    ],
+    "interpretation": "Solver completion is only one gate; saved-field, conservation, periodic-cycle and rendering gates remain required."
+  },
+  "saved_field_validation": {
+    "status": "SAVED_FIELD_CHECKS_PASS",
+    "validated_field_count": 200,
+    "time_range_s": [
+      1.01,
+      3.0
+    ],
+    "max_relative_flow_imbalance": 2.3734612557096206e-10,
+    "max_relative_inlet_error": 3.2848069816014365e-08
+  },
+  "cycle_metrics": {
+    "case": "aorta",
+    "cells": 128472,
+    "cycle_s": [
+      2.0,
+      3.0
+    ],
+    "mean_TAWSS_Pa": 0.25955285071247675,
+    "area_mean_OSI": 0.08576302090419365,
+    "max_relative_flow_imbalance": 2.373460458502141e-10,
+    "max_relative_inlet_waveform_error": 3.2848069816014365e-08,
+    "TAWSS_cycle_relative_L2": 0.029028750313771653,
+    "mean_outlet1_fraction": 0.653446959697852,
+    "peak_speed_m_s": 0.7915442585945129,
+    "density_kg_m3": 1060.0,
+    "stress_units": "Kinematic wallShearStress multiplied once by density to Pa; RRT is Pa^-1",
+    "conservation_under_0_5_percent": true,
+    "cycle_change_under_5_percent": true,
+    "interpretation": "Executed exploratory CFD with inferred alignment, repaired geometry, synthetic inflow and two zero-pressure outlets. Not patient-validated; mesh convergence not established."
+  },
+  "periodicity": {
+    "status": "FAIL",
+    "current_cycle_s": [
+      2.0,
+      3.0
+    ],
+    "prior_cycle_s": [
+      1.0,
+      2.0
+    ],
+    "paired_phases": 21,
+    "threshold_relative_L2": 0.05,
+    "velocity_volume_time_relative_L2": 0.042830942195797236,
+    "pressure_volume_time_relative_L2": 0.03645718897419799,
+    "WSS_area_time_relative_L2": 0.08862296644210213,
+    "note": "Additional phase-resolved gates; original conservation, inlet and TAWSS cycle-change gates remain required. Mesh/time-step convergence and anatomical accuracy are not established."
+  },
+  "interpretation": "Transient; periodicity not achieved because phase-resolved WSS change was 8.8623%, exceeding the unchanged 5% gate. No automatic extension beyond 3 s. Coarse-mesh WSS is unvalidated.",
+  "video": {
+    "status": "PASS_VIDEO_DECODE_METADATA",
+    "resolution": [
+      1920,
+      1080
+    ],
+    "fps": 10,
+    "frames": 300,
+    "video_duration_s": 30,
+    "simulated_time_shown_s": [
+      0.01,
+      3.0
+    ],
+    "time_scale": "10x slowed playback",
+    "cycle_replay": "none; all 300 actual saved snapshots are shown once",
+    "saved_snapshot_interval_s": 0.01,
+    "flow_interpolation": "none; each frame colors particles and wall from the actual saved snapshot; particle positions advance using the current saved velocity held over one .01 s interval",
+    "particle_count": 1200,
+    "minimum_valid_particles": 1194,
+    "WSS": "Unvalidated coarse-mesh values from actual saved wallShearStress fields, multiplied once by rho=1060 kg/m3",
+    "periodicity": "phase-resolved successive-cycle gate failed; explicitly transient",
+    "mesh_accuracy": "not established; coarse/fine startup differences remain large"
+  },
+  "video_path": "/tmp/aortic_exploratory_demo_20261018_01/results/video_1080p_transient/Aortic_Exploratory_Transient_1080p.mp4",
+  "paraview_paths": [
+    "/tmp/aortic_exploratory_demo_20261018_01/cfd/aorta/aorta.foam",
+    "/tmp/aortic_exploratory_demo_20261018_01/results/paraview/aorta_cycle_2_to_3_instantaneous_WSS_unvalidated.pvd",
+    "/tmp/aortic_exploratory_demo_20261018_01/results/paraview/aorta_cycle_3_TAWSS_OSI_RRT_unvalidated.pvd"
+  ],
+  "storage": {
+    "outer_test_bytes": 476298959,
+    "cadence_test_bytes": 219657430,
+    "new_run_all_files_bytes": 2969697785,
+    "aggregate_bytes": 3665654174,
+    "hard_cap_bytes": 5368709120,
+    "storage_stop_threshold_bytes": 4724464025,
+    "within_5GiB": true,
+    "windows_C_free_bytes": 9197879296
+  },
+  "existing_cases_preserved": true,
+  "reference_intermediate_pruning": "none",
+  "failed_attempt_evidence": "Preserved in results/aorta_failed_numpy126_attempt1 and original cycle_metrics.log; recovery used NumPy 1.26-compatible trapz, not changed validation thresholds.",
+  "restart_or_resume": "not needed; run ended at 3.0 s. Do not rerun or extend unless separately instructed."
+}

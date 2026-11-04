@@ -1,0 +1,85 @@
+{
+  "status": "Research coordinate repair inferred from headers and image correspondence; no original DICOM verification",
+  "source": "C:\\dev\\aortic_project\\data\\pilot_ct.nii.gz",
+  "source_sha256": "a678305ded7a2d60faf28211d73b9fc34f836e0cedf322e9ef966d5fda1cf4c7",
+  "derived_file": "CT_z_direction_corrected_RESEARCH.nii.gz",
+  "raw_voxel_payload_unchanged": true,
+  "voxel_payload_sha256": "d13e7bbe3206f57e582156b6a9bcc3077b160037162e3bafa0cb1c48e0d7ebf3",
+  "source_compressed_sha256_after": "a678305ded7a2d60faf28211d73b9fc34f836e0cedf322e9ef966d5fda1cf4c7",
+  "header_changes": {
+    "qfac": [
+      -1,
+      1
+    ],
+    "qform_code": [
+      1,
+      2
+    ],
+    "sform_code": [
+      1,
+      2
+    ],
+    "srow_z_direction": [
+      0.6000000238418579,
+      -0.6000000238418579
+    ],
+    "description": "derived research status"
+  },
+  "corrected_affine_RAS_mm": [
+    [
+      -0.7734379768371582,
+      0,
+      0,
+      198.63772583007812
+    ],
+    [
+      0,
+      0.7734379768371582,
+      0,
+      -174.14208984375
+    ],
+    [
+      0,
+      0,
+      -0.6000000238418579,
+      3.361999988555908
+    ],
+    [
+      0,
+      0,
+      0,
+      1
+    ]
+  ],
+  "SITK_LPS_direction": [
+    [
+      1.0,
+      -0.0,
+      0.0
+    ],
+    [
+      0.0,
+      -1.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      -1.0
+    ]
+  ],
+  "SITK_LPS_origin": [
+    -198.63772583007812,
+    174.14208984375,
+    3.361999988555908
+  ],
+  "z_extent_mm": [
+    3.361999988555908,
+    -647.6380258798599
+  ],
+  "mask_z_extent_mm": [
+    -647.6380004882812,
+    3.3620258569717407
+  ],
+  "mask_mapping": "CT K = 1085 - mask K; unchanged I/J"
+}

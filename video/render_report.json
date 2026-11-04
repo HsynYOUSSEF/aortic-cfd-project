@@ -1,0 +1,57 @@
+{
+  "status": "PASS",
+  "output": "/mnt/c/Users/Admin/Desktop/Aortic_Repaired_Simulation_20261015/deliverables/Aortic_Exploratory_SideBySide_20261018_01/Aortic_Exploratory_SideBySide_1080p.mp4",
+  "resolution": [
+    1920,
+    1080
+  ],
+  "fps": 10,
+  "frames": 300,
+  "duration_s": 29.91,
+  "simulation_times_s": [
+    0.01,
+    3.0
+  ],
+  "playback": "10x slowed over the .01-to-3.00 s snapshot span; 0.01 s computed snapshot per frame",
+  "cycle_replay": "none",
+  "field_interpolation": "none; each frame samples computed snapshot at the same time; particle positions advanced using that snapshot over 0.01 s",
+  "camera": "same orthographic projection and basis for both panels",
+  "WSS_native_dimensions": "[0 2 -2 0 0 0 0] m2/s2 (kinematic)",
+  "density_kg_m3": 1060.0,
+  "density_conversion": "multiplied exactly once to Pa",
+  "fixed_color_scale_Pa": [
+    0,
+    11.9
+  ],
+  "observed_global_max_WSS_Pa": 11.840185165405273,
+  "right_panel_label": "Wall shear stress — unvalidated coarse-mesh results",
+  "video_label": "Exploratory transient CFD",
+  "minimum_valid_particles": 1397,
+  "ffprobe": {
+    "programs": [],
+    "streams": [
+      {
+        "codec_type": "video",
+        "width": 1920,
+        "height": 1080,
+        "r_frame_rate": "10/1",
+        "avg_frame_rate": "10000/997",
+        "nb_frames": "300"
+      }
+    ],
+    "format": {
+      "duration": "29.910000"
+    }
+  },
+  "nominal_playback_fps": 10,
+  "fixed_colorbar_ticks_Pa": [
+    0,
+    5.95,
+    11.9
+  ],
+  "periodicity": "Not established; phase-resolved successive-cycle validation failed. Treat as transient.",
+  "mesh_accuracy": "Not established; coarse-mesh results are exploratory only.",
+  "visual_inspection": "First (.01 s), middle (1.51 s), and final (3.00 s) encoded frames inspected; labels, shared time, matching camera, particle flow, WSS field and colorbar visible.",
+  "existing_single_panel_video_preserved": "/tmp/aortic_exploratory_demo_20261018_01/results/video_1080p_transient/Aortic_Exploratory_Transient_1080p.mp4",
+  "previous_draft": "Removed after its contents were superseded; original simulation outputs and pre-cleanup backup preserved."
+}

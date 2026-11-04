@@ -1,4 +1,4 @@
-> **Source recovery update:** Use [REBUILD_FROM_SOURCE.md](REBUILD_FROM_SOURCE.md) for the new runnable workflow and its verification status. The instructions below also describe the recorded demonstration and may refer to historical controller files that remain unavailable. The new workflow is not an exact replay.
+> **Archive of pilot run 2 (18 October 2026).** This guide describes the second exploratory run: repaired Anev_01 mask, 128,472-cell staircase mesh, 3 cycles, not periodic. It is kept for traceability. For new work use [cfd_v2](../cfd_v2/README.md) and [data_prep](../data_prep/README.md). Paths in this guide are relative to the repository root.
 
 # Latest-run guide: data, CFD, 3D Slicer, ParaView and video
 
@@ -6,11 +6,11 @@ This guide describes the recorded project and practical ways to use its outputs.
 
 ## 1. Start here: choose the task
 
-| Goal | Required files | Possible with the public ZIP alone? |
+| Goal | Required files | Possible with this repository alone? |
 |---|---|---|
 | Watch the simulation | MP4 | Yes |
 | Inspect the repaired vessel and edit a copy | `.seg.nrrd`, Slicer VTP or STL | Yes |
-| Read source, settings and validation evidence | Extracted ZIP | Yes |
+| Read source, settings and validation evidence | This repository | Yes |
 | Inspect geometry in ParaView | Geometry VTP/STL | Yes, geometry only |
 | Animate actual velocity, pressure or WSS in ParaView | Full case with mesh and saved fields, or complete PVD/VTP series | No |
 | Regenerate the exact side-by-side movie | 300 saved states with U and wallShearStress, analysis module, renderer | No |
@@ -19,53 +19,11 @@ This guide describes the recorded project and practical ways to use its outputs.
 
 **Latest result:** 3.0 s on a 128,472-cell coarse mesh. Phase-resolved WSS cycle difference was 8.86%, above the unchanged 5% criterion. This is a transient exploratory calculation, not a validated clinical prediction. “Mesh OK” and a playable movie do not mean accurate WSS.
 
-## 2. Download and organize the files
+## 2. Get the files
 
-1. Open this repository and download `aortic-cfd-publication-ready.zip` using **Download raw file**. Downloading the entire repository gives an outer ZIP that still contains this project ZIP; extract both levels.
-2. Extract the project ZIP into a new folder, for example `C:\dev\aortic_project_public`. Keep the original ZIP unchanged.
-3. The extracted folder contains `tools`, `runs`, `reports`, `data`, `geometry`, `video`, `REPRODUCING.md` and `PUBLICATION_MANIFEST.json`.
-4. Read this guide and COMPLETION_STATUS.md before trying to reproduce the solver.
-5. Put experiments in separate folders. Never solve inside the preserved reference run or overwrite the supplied geometry.
+Clone or download this repository. The files are already in folders: `data`, `geometry`, `reports`, `repro`, `runs`, `tools`, `video`. Put new experiments in separate folders and never overwrite the supplied geometry.
 
-Use PowerShell for Windows/WSL administration:
-
-```powershell
-Get-Location
-wsl --list --verbose
-wsl -d Ubuntu
-```
-
-Use the exact distribution name displayed by `wsl --list --verbose`. Inside Ubuntu, Windows C: is normally `/mnt/c`. Do not type PowerShell commands into Bash.
-
-Example Bash setup for documentation checks:
-
-```bash
-export PROJECT=/mnt/c/dev/aortic_project_public
-cd "$PROJECT"
-pwd
-ls
-```
-
-Verify the public package using its publication manifest, not the full-input manifest that references excluded assets:
-
-```bash
-python3 - <<'PY'
-from pathlib import Path
-import hashlib, json
-root = Path.cwd()
-manifest = json.loads((root/'PUBLICATION_MANIFEST.json').read_text())
-bad = []
-for item in manifest['files']:
-    path = root/item['path']
-    if not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest() != item['sha256']:
-        bad.append(item['path'])
-if bad:
-    raise SystemExit('Missing or changed files: ' + ', '.join(bad))
-print('PASS:', len(manifest['files']), 'manifest entries match')
-PY
-```
-
-The manifest records every package file except itself. Run this in the untouched extraction, before editing scripts. Hashes detect changes; they do not establish scientific correctness.
+On Windows, run the commands below in Ubuntu under WSL (`wsl -d Ubuntu`); Windows C: is `/mnt/c` there.
 
 ## 3. Software and environment
 
@@ -104,7 +62,7 @@ export OPENBLAS_NUM_THREADS=1
 
 Install Windows desktop versions of [3D Slicer](https://www.slicer.org/) and [ParaView](https://www.paraview.org/download/) for interactive viewing. The cited ParaView instructions use the 5.12 interface; labels can differ between versions. A Slicer installation contains its own Python environment: it is separate from Ubuntu's virtual environment.
 
-Before copying full fields, check `df -h` in Ubuntu and free space on C:. The recorded simulation working set was about 3.42 GiB, excluding its separate snapshot. A reference copy plus a fresh run needs substantially more space. Do not treat the 16 MB public ZIP as an estimate of solver storage.
+Before copying full fields, check `df -h` in Ubuntu and free space on C:. The recorded simulation working set was about 3.42 GiB, excluding its separate snapshot. A reference copy plus a fresh run needs substantially more space. The repository is only a small fraction of that.
 
 ## 4. Where the vessel and flow data came from
 
@@ -118,7 +76,7 @@ The vessel comes from **AortaSeg-60 v1.1**, case **Anev_01**, by Dania El Rahal,
 
 Download the dataset archive, inspect its members and extract only the required case into a new `source-data` folder. Keep the downloaded files immutable. The recorded source CT SHA-256 is `a678305ded7a2d60faf28211d73b9fc34f836e0cedf322e9ef966d5fda1cf4c7`; mask SHA-256 is `22710cf5e959497cac698a8015b2c04075773ea67c8293d3b291eacc5a920a07`. Compare with `sha256sum <filename>` before calling a download the same source. A mismatch requires investigation, not changing the expected checksum.
 
-The publisher's README states **CC BY 4.0**. Preserve attribution and describe modifications. See [ATTRIBUTION.md](ATTRIBUTION.md) and [REFERENCES.md](REFERENCES.md).
+The dataset README states **CC BY 4.0** (the record metadata say CC0); we follow CC BY 4.0. Preserve attribution and describe modifications. See [ATTRIBUTION.md](../ATTRIBUTION.md).
 
 **Flow was assumed, not measured from this patient:**
 
@@ -160,7 +118,7 @@ Result: source volume 112.196 mL; repaired volume 127.914 mL. Added 53,953 voxel
 
 ## 6. 3D Slicer: view, compare, edit and save
 
-1. Start Slicer. Choose **File → Add Data** and select `data/repaired/REPAIRED_AND_CHANGES.seg.nrrd` from the extracted ZIP, or the loose repository copy. Confirm the description is **Segmentation**, then load.
+1. Start Slicer. Choose **File → Add Data** and select `data/repaired/REPAIRED_AND_CHANGES.seg.nrrd`. Confirm the description is **Segmentation**, then load.
 2. Open **Segmentations**. Select the loaded segmentation and enable **Show 3D** / closed-surface representation if needed. Reset the 3D view to fit the vessel.
 3. Toggle each segment's eye icon. Inspect the repaired vessel, original reference, added regions and removed regions separately. Lower opacity to compare overlapping structures. Do not interpret all simultaneously visible segments as one lumen.
 4. Choose a four-up layout to see axial, sagittal and coronal slices plus the 3D view. Scroll through the terminal region and confirm that both lower channels remain visible.
@@ -250,7 +208,7 @@ In the copied run configuration set `case_name` to `aorta` and `end_time_s` to 3
 
 1. Check the copied mesh with the native command above; inspect the log for `Mesh OK.` and all required patches.
 2. Confirm no other solver/controller is writing this case. Start only one.
-3. Prefer the full case's retained `src/run_cycles.py` controller after adapting its `PROJECT`, `ROOT`, `OUTER` and `CAD` paths and checking its required reports. That controller is **not in the public ZIP**. The historical command was `python3 src/run_cycles.py` from the full run root.
+3. Prefer the full case's retained `src/run_cycles.py` controller after adapting its `PROJECT`, `ROOT`, `OUTER` and `CAD` paths and checking its required reports. That controller is **not in this repository**. The historical command was `python3 src/run_cycles.py` from the full run root.
 4. If using a manually supervised new continuation instead, the native command below is an alternative, not the original automatic safety controller. Monitor storage, Courant numbers, finite fields and time-step progress; stop if a gate fails.
 
 ```bash
@@ -302,7 +260,7 @@ RRT   = 1 / ((1 - 2*OSI)*TAWSS)                        [Pa^-1]
 
 Use actual timestamps and trapezoidal integration, not an unweighted average of irregularly spaced samples. Treat zero denominators explicitly. RRT is this derived index, not a directly measured residence time in seconds. Area-weight aggregate wall metrics and volume/time-weight phase comparisons. Do not average stress vectors before taking magnitudes for TAWSS.
 
-Recorded final results: flow imbalance 2.37e-10; inlet error 3.28e-8; U cycle difference 4.28%; p 3.65%; **phase-resolved WSS 8.86% (FAIL)**. Passing TAWSS change does not override that failure. Mesh accuracy is not established. The latest evidence is `runs/runtime_optimization_20261018_01/reports/FINAL_STATUS.json` in the ZIP.
+Recorded final results: flow imbalance 2.37e-10; inlet error 3.28e-8; U cycle difference 4.28%; p 3.65%; **phase-resolved WSS 8.86% (FAIL)**. That historical check paired the 21 phases saved by the original controller; the newer `repro/tools/check_periodicity.py` pairs 100 phases (every 0.01 s). Passing TAWSS change does not override that failure. Mesh accuracy is not established. The latest evidence is `runs/runtime_optimization_20261018_01/reports/FINAL_STATUS.json` in this repository.
 
 ## 11. ParaView: open the geometry or actual CFD
 
@@ -418,7 +376,7 @@ For each new run, record software versions, input checksums, geometry changes, m
 
 ## 15. Sources and how to read the historical archive
 
-Project-specific evidence is in the extracted ZIP: `reports/repair_audit.json`, `reports/alignment_provenance.json`, `runs/runtime_optimization_20261018_01/reports/COARSE_MESH_UNIFORM.json`, `FINAL_STATUS.json` in the same reports folder, the renderer source and its delivered `render_report.json`. A report saying “no solve performed” describes its earlier stage; it does not supersede the later final status.
+Project-specific evidence in this repository: `reports/repair_audit.json`, `reports/alignment_provenance.json`, `runs/runtime_optimization_20261018_01/reports/COARSE_MESH_UNIFORM.json`, `FINAL_STATUS.json` in the same reports folder, the renderer source and its delivered `render_report.json`. A report saying “no solve performed” describes its earlier stage; it does not supersede the later final status.
 
 Official software references for the instructions:
 
@@ -431,4 +389,4 @@ Official software references for the instructions:
 - [OpenCFD: wallShearStress](https://doc.openfoam.com/2312/tools/post-processing/function-objects/field/wallShearStress/) — newer documentation; recorded commands were checked against project scripts for v1912.
 - [FFmpeg documentation](https://ffmpeg.org/ffmpeg.html) and [ffprobe](https://ffmpeg.org/ffprobe.html)
 
-These explain software operation, not patient-specific validation. See [REFERENCES.md](REFERENCES.md) for dataset and software publication credits.
+These explain software operation, not patient-specific validation. See [ATTRIBUTION.md](../ATTRIBUTION.md) for dataset and software credits.

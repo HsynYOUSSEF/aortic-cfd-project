@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-21",
+  "python": "3.12.14",
+  "case_preparation": "PASS on included repaired surface/mask",
+  "case_geometry": "One connected closed surface, nondegenerate triangles, one inlet, two outlets, no boundary/nonmanifold edges",
+  "overwrite_rejection": "PASS",
+  "synthetic_tests": {
+    "count": 2,
+    "result": "PASS",
+    "checks": [
+      "branch cross-sections retained and noise island removed",
+      "signed RAS coordinates and closed surface export"
+    ]
+  },
+  "replacement_repair": "Executed on original reference mask; see repair_report.json",
+  "not_executed": [
+    "OpenFOAM meshing",
+    "CFD solve",
+    "new analysis and phase-periodicity check on solved fields",
+    "new video rendering",
+    "Slicer application",
+    "ParaView application"
+  ],
+  "reason": "OpenFOAM/Slicer/ParaView and complete solved case unavailable in hosted environment",
+  "claim": "Source recovery and preprocessing verified; no end-to-end solver validation claimed"
+}
